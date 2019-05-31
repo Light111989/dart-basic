@@ -1,7 +1,108 @@
-﻿﻿# dart-basic
+﻿﻿﻿﻿# dart-basic
+
+# Lesson 9 - Avengers Endgame: Chống giả mạo
+* **Knowledge** : *Singleton(desgin pattern), Factory Constructor*
+* **Deadline**: *6:00 PM Monday 3th Jun 2019*
+
+* **Đề bài** 
+    (*Yêu cầu nâng cao L8*)
+   - Thor chỉ có một, không có một nhân vật khác giả mạo(-> sử dụng Singleton, một class chỉ có duy nhất 1 new instance ) **[5 marks]**
+   - Viết hàm kiểm tra 2 new instance của Thor để đảm bảo không bị giả mạo (Sử dụng operator ==) **[2 marks]**
+   ```dart
+    Thor thor = Thor(name: 'Thần Sét', sexual: 'Male');
+    Thor thorFake = Thor(name: 'Thần Sét Fakebede', sexual: 'Female');
+    thor.showInfo();
+    thorFake.showInfo();
+    print("Thor can't be fake: ${thor == thorFake}");
+   ```
+   - Thor lúc này bụng phệ, não teo vì rượu hay đãng trí, thường xuyên quên cây búa thần Mjolnir, trước lối ra đường hầm hệ thống sẽ check duy nhất Thor, khi nào vũ khí sẵn sàng mới cho qua. Nên muốn qua đường hầm lượng tử Thor phải triển khai phương thức tìm búa, và sẽ chờ khi búa được tìm thấy bộ cảm biến mới chấp nhận(-> Sử dụng Future, async, await) **[3 marks]**
+
+# Lesson 8 - Avengers Endgame: Đánh cắp thời gian
+* **Knowledge** : *Stream, StreamController, StreamSubscription, Future, async, await*
+* **Deadline**: *6:00 PM Thursday 30th May 2019*
+
+**Đề bài** : 
+
+ * **Dẫn nhập** :
+   - Trận Infinity War các Avengers thua Thanos, họ quyết định chọn phương án đánh cắp thời gian trở về quá khứ cướp lại 6 viên đá để thay đổi kết quả cuộc chiến. Các Avengers sử dụng đừờng hầm lượng tử để du hành thời gian. Triển khai code mô tả kịch bản này.
+
+ * **Các đối tượng mô phỏng** : 
+   - List<dynamic> Avengers = [...] : Danh sách các avenger
+   - StreamController : Bộ điều khiển đường hầm lượng tử
+   - StreamSubscription : Bộ cảm biến đường hầm lượng tử đặt ở lối ra đường hầm: StreamController().stream.listen((data)) -> StreamSubscription
+   - Stream :
+      - StreamSink : StreamController().sink - Lối vào để đưa Avenger vô đường hầm lượng tử [sink.add(avenger)]
+      - Stream : StreamController().stream - Lối ra đường hầm lượng tử
+ * **Yêu cầu cơ bản** :  
+   - Bộ cảm biến có nhiệm vụ lọc avenger, chỉ avenger có vũ khí mới cho qua. Hiển thị thông tin avengers được chấp nhận(Accepted) & không chấp nhận(Rejected) qua đường hầm lượng tử ở bộ cảm biến(-> sử dụng StreamSubscription) **[2 marks]**
+   - Cứ cách 1s là mỗi avenger sẽ được cho vào đường hầm lượng tử (-> sử dụng StreamController().sink.add, Future, await, asyn) **[3 marks]**
+   - Đường hầm sẽ đóng lại sau 4s, avenger nào nhảy vào không kịp thì phải ở lại (-> sử dụng StreamController().close, Future) **[2 marks]**
+   - Lưu lại một danh sách mới chứa các avenger được chấp nhận(transformedAvengers) và hiển thị lại. **[3 marks]**
+   - **Kết quả demo**
+      - http://prntscr.com/nup9nh static picture
+      - https://i.imgur.com/tWw37xk.gif  dynamic picture
+ ```dart
+import 'dart:async';
+import '../L6/Avenger.dart';
+import '../L6/Spiderman.dart';
+import '../L6/CaptainAmerica.dart';
+import '../L6/Thanos.dart';
+import '../L6/Hulk.dart';
+import '../L6/Spiderman.dart';
+const STREAM_CLOSE_TIMEOUT = 4;
+const AVENGER_GO_TIMEOUT = 1;
+Future<List<dynamic>> transformAvengers(List<dynamic> avengers) async {
+  List<dynamic> transformedAdvengers = [];
+  // Triển khai kịch bản tại đây 
+  // Dùng  StreamController, StreamSubscription...
+  // start todo
+  // ...
+  // end todo
+  return transformedAdvengers;
+}
+
+// Liệt kê avengers đã qua đường hầm lượng tử
+void showAvengers(List<dynamic> transformedAvengers){
+
+}
+List<dynamic> avengers = [
+  Thanos(
+    name:'Củ khoai tím',
+    sexual:'Male',
+    gadget:Gadget('Găng tay vô cực 6 đá')
+  ),
+  Thor(
+    name:'Thần Sét',
+    sexual:'Male'
+  ),
+  CaptainAmerica(
+    name:'Lớp trưởng Mỹ',
+    sexual:'Male',
+    gadget:Gadget('Supper Khiên')
+  ),
+  Spiderman(
+    name:'Người Nhện',
+    sexual:'Male',
+    gadget:Gadget('Tơ Nhện')
+  ),
+  Hulk(
+    name:'Khổng Lồ Xanh',
+    sexual:'Male',
+    gadget:Gadget('Cú đấm')
+  ),
+];
+void main() {
+  transformAvengers(avengers).then((transformedAvengers) { 
+    showAvengers(transformedAvengers);
+  });
+}
+```
+* **Result screen** :
+  - http://prntscr.com/nup9nh static picture
+  - https://i.imgur.com/tWw37xk.gif  dynamic picture
 
 # Lesson 7 - dynamic vs var keyword
-* Deadline: 5:00 PM Wednesday 22th May 2019
+* Deadline: 6:00 PM Thursday 23th May 2019
 
 **Main Requirements** : 
 
@@ -19,17 +120,15 @@ import 'dart:math';
 
 List<...> avengers = [<list to avengers here>];
 String checkAvenger(... avenger){
-  // get class name of a avenger here such as Thanos, Spiderman, Hulk...
-  return '<a avenger>'
+  // get "class name" of a avenger here such as "Thanos", "Spiderman", "Hulk" ...
 }
 ... getAvenger(){
-  // get random avenger here
-  return '<a random avenger>'
+  // get a random avenger from List here
 }
 void main(){
   // list random avengers here
-  for()
-    print('');
+  for(20)
+    print(checkAvenger(getAvenger()));
 }
 ```
 console screen :

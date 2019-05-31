@@ -2,8 +2,7 @@ import 'Avenger.dart';
 import 'Gadget.dart';
 
 class Thanos extends Avenger {
-  // Thanos({String name = "...", String sexual = '...', Gadget gadget = null});
-  Thanos({String name = "...", String sexual = '...', Gadget gadget = null})
+  Thanos({String name, String sexual, Gadget gadget})
       : super(name: name, sexual: sexual, gadget: gadget){
       }
   @override

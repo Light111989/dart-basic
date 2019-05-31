@@ -2,12 +2,11 @@ import 'Avenger.dart';
 import 'Gadget.dart';
 
 class Spiderman extends Avenger {
-  Spiderman()
+  Spiderman({String name, String sexual, Gadget gadget})
       : super(name: 'Peter', sexual: 'male', gadget: Gadget('Silk Shoot'));
   void doSkill() {
     print('Nhảy ra khỏi thằng điên');
     print('''
-    
                                              ``........``                                            
                                    `-:/osyyhhhyyyyyyyyhhhyys+/:-`                                   
                               .:/oyhys+/:-..`   ``   ````.-:/+syhys+:`                              
