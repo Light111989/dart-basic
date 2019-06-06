@@ -2,9 +2,14 @@ import 'Avenger.dart';
 import 'Gadget.dart';
 
 class Thor extends Avenger {
-  Thor({String name, String sexual , Gadget gadget})
-      : super(name: name, sexual: sexual, gadget: gadget){
-      }
+  String name,sexual;
+ Gadget gadget;
+      Thor._privateConstructor(this.name,this.sexual,this.gadget)
+      : super(name: name, sexual: sexual, gadget: gadget) {}
+  static final Thor _instance = new Thor._privateConstructor('Thần Sét','Male',null);
+  factory Thor({name, sexual ,gadget}) {
+    return _instance;
+  }
   @override
   void doSkill() {
     print('''                                                                                          
