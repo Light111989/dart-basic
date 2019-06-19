@@ -57,7 +57,7 @@ abstract class Avenger {
     dynamic avenger; 
     switch (type) { 
       case Avengers.Thor: 
-        avenger = CaptainAmerica(name: name, sexual: sexual); 
+        avenger = Thor(name: name, sexual: sexual); 
         break; 
     } 
     return avenger; 
