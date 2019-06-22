@@ -8,7 +8,6 @@ Future<dynamic> fetchAvenger(url) async {
   try { 
     final response = await http.get(url); 
     if (response.statusCode == 200) { 
-      //print(JSON.jsonDecode((response.body))); 
       return JSON.jsonDecode((response.body)); 
     } else { 
       print('Failed to load post'); 

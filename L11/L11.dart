@@ -9,29 +9,17 @@ const List<String> urlAvengers = [
   'https://blogspotscraping.herokuapp.com/avengers/Thanos.json',
   'https://blogspotscraping.herokuapp.com/avengers/CaptainAmerica.json',
 ];
-
-// dynamic createAvengers() async {
-//   for (int i = 0; i < urlAvengers.length; i++) {
-//     var val = await Avengers.getJsonUrl(urlAvengers[i]);
-//     var filename = urlAvengers[i].split("/").last;
-//     var type = filename.split(".").first;
-//     Avenger avengers =
-//         Avenger(type: type, name: val["name"], sexual: val["sexual"]);
-//     avengers.showInfo();
-//   }
-// }
 createAvengers() async {
   for (final i in urlAvengers) {
-    Future<String> aa =await Avengers.getFileNameFromUrl(i);
-    aa.then((onValue) {
-      print(onValue);
+    await fetchAvenger(i).then((response) {
+      var filename = i.split("/").last;
+      var type = filename.split(".").first;
+      var getJson = response["Avenger"];
+      var name = getJson["name"];
+      var sexual = getJson["sexual"];
+      Avenger avengers = Avenger(type: type, name: name, sexual: sexual);
+      avengers.showInfo();
     });
-    // var val = await Avengers.getJsonUrl(i);
-    // var filename = i.split("/").last;
-    // var type = filename.split(".").first;
-    // Avenger avengers =
-    //     Avenger(type: type, name: val["name"], sexual: val["sexual"]);
-    // avengers.showInfo();
   }
 }
 
@@ -48,5 +36,5 @@ void main() async {
   thor.showInfo();
   print(
       '============ L11.2 - Call Default Factory Constructor Orderly ============');
-  createAvengers();
+   createAvengers();
 }
